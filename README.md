@@ -1,50 +1,74 @@
-# Welcome to your Expo app 👋
+# 🍢 TeSate - Pesan Sate Gak Pake Ribet!
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![Banner](https://raw.githubusercontent.com/Al11yy/TeSate/main/assets/images/itesate.png)
 
-## Get started
+**TeSate** adalah aplikasi pemesanan sate dan minuman tradisional berbasis mobile yang dibangun menggunakan **Expo (React Native)**. Aplikasi ini dirancang untuk memberikan pengalaman memesan sate Cak Awih dengan cepat, aman, dan tentunya bikin kenyang!
 
-1. Install dependencies
+---
 
+## ✨ Fitur Utama
+
+- 🏠 **Home Feed Dynamic**: Menampilkan daftar menu Sate dan Minuman Segar secara real-time dari API.
+- 🔍 **Pencarian Cepat**: Cari menu favorit lu (contoh: "Madura", "Padang", "Taichan").
+- 🛒 **Order Management**: Detail produk lengkap mulai dari harga, rating, hingga total terjual.
+- 💳 **Opsi Pembayaran**: Pilih metode bayar sesukamu (Cash, OVO, atau QRIS).
+- 🚚 **Track Order**: Monitoring proses pesanan lu sampe depan gerbang rumah.
+- 👑 **Admin Console**: Khusus buat Cak Awih buat ngelola menu yang ready.
+
+---
+
+## 🚀 Tech Stack
+
+- **Framework**: [Expo](https://expo.dev/) (React Native)
+- **Navigation**: [Expo Router](https://docs.expo.dev/router/introduction/) (File-based)
+- **API**: [TeSate API](https://github.com/SatuSattr/teSate-API) (Base URL di Vercel)
+- **Icons**: [Ionicons](https://ionic.io/ionicons)
+- **Styling**: React Native StyleSheet (Clean & Modern Design)
+
+---
+
+## 🛠️ Cara Install
+
+Pastikan lu udah punya **Node.js** dan **Git** di komputer lu.
+
+1. **Clone Repo**
+   ```bash
+   git clone https://github.com/Al11yy/TeSate.git
+   cd TeSate
+   ```
+
+2. **Install Dependensi**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Jalankan Aplikasi**
    ```bash
    npx expo start
    ```
+   Scan QR Code pake aplikasi **Expo Go** (Android/iOS) biar bisa liat di HP langsung!
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📖 Dokumentasi API
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Proyek ini menggunakan **Tesate API** yang di-deploy di Vercel. Lu bisa liat detail endpoint dan cara pemetaan datanya di file:
+👉 [CARA_PAKAI_API.txt](./CARA_PAKAI_API.txt)
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📸 Preview Design
 
-```bash
-npm run reset-project
-```
+| Welcome Screen | Menu Utama | Detail Produk | Proses Pesanan |
+| :---: | :---: | :---: | :---: |
+| ![Splash](https://raw.githubusercontent.com/Al11yy/TeSate/main/assets/images/itesate.png) | 🍢 Sate & Minuman | ![Proses](https://raw.githubusercontent.com/Al11yy/TeSate/main/assets/images/chainman.png) | ![Empty](https://raw.githubusercontent.com/Al11yy/TeSate/main/assets/images/furab.png) |
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 👤 Author
 
-To learn more about developing your project with Expo, look at the following resources:
+- **Aliy** (Liyy) - [GitHub](https://github.com/Al11yy)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> "Pet Cepet, Sen Pesen!" 🍢🍢🍢
