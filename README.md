@@ -1,4 +1,4 @@
-# 🍢 TeSate - Pesan Sate Gak Pake Ribet!
+# 🍢 TeSate - Pet Cepet, Sen Pesen!
 
 ![Banner](https://raw.githubusercontent.com/Al11yy/TeSate/main/assets/images/itesate.png)
 
