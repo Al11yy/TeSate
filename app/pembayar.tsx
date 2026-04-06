@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { router, useLocalSearchParams } from 'expo-router' // Tambah useLocalSearchParams
-import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 export default function Pembayaran() {
   // Ambil data yang dikirim dari detailpro.tsx
@@ -69,7 +69,7 @@ export default function Pembayaran() {
             onPress={handlePayment}
           >
             <View style={styles.paymentLeft}>
-              <FontAwesome5 name="money-bill-wave" size={24} color="white" />
+              <Ionicons name="cash-outline" size={24} color="white" />
               <Text style={styles.paymentText}>Bayar Cash aja</Text>
             </View>
             <Ionicons name="radio-button-off" size={24} color="white" />

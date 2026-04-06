@@ -5,21 +5,24 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function DetailPro() {
-  const { id } = useLocalSearchParams(); 
+  const { id, type } = useLocalSearchParams(); 
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    if (id) fetchDetail();
-  }, [id]);
+    if (id && type) fetchDetail();
+  }, [id, type]);
 
   const fetchDetail = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`https://dummyjson.com/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
+      const response = await fetch(`https://te-sate-api.vercel.app/api/menu/${type}/${id}`);
+      const result = await response.json();
+      
+      if (result.success) {
+        setProduct(result.data);
+      }
     } catch (error) {
       console.error("Gagal ambil detail:", error);
     } finally {
@@ -49,10 +52,10 @@ export default function DetailPro() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Gambar Produk Utama */}
-        <Image source={{ uri: product.thumbnail }} style={styles.mainImage} resizeMode="contain" />
+        <Image source={{ uri: product.image }} style={styles.mainImage} resizeMode="contain" />
 
         <View style={styles.content}>
-          <Text style={styles.title}>{product.title}</Text>
+          <Text style={styles.title}>{product.name}</Text>
           
           <View style={styles.timeRow}>
             <Ionicons name="restaurant-outline" size={18} color="black" />
@@ -64,7 +67,7 @@ export default function DetailPro() {
           {/* Price & Quantity Row */}
           <View style={styles.actionRow}>
             <View style={styles.priceTag}>
-              <Text style={styles.priceText}>Rp {(product.price * 15000).toLocaleString('id-ID')}</Text>
+              <Text style={styles.priceText}>Rp {product.price.toLocaleString('id-ID')}</Text>
             </View>
 
             <View style={styles.counterRow}>
@@ -98,10 +101,10 @@ export default function DetailPro() {
     onPress={() => router.push({
       pathname: "/pembayar",
       params: { 
-        title: product.title,
-        price: product.price * 15000, 
+        title: product.name,
+        price: product.price, 
         qty: quantity,
-        total: (product.price * 15000) * quantity 
+        total: product.price * quantity 
       }
     })}
   >

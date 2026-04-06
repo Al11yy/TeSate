@@ -47,6 +47,16 @@ export default function EditMin() {
             color="#333333" 
             onPress={() => router.push('/mainadmin')} 
           />
+
+          <View style={{ height: 20 }} />
+
+          <ButtonPrimary 
+            title="Log out" 
+            color="#fa4f4fff" 
+            onPress={() => router.push('/login')} 
+          />
+
+
         </View>
 
       </ScrollView>

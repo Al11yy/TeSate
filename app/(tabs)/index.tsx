@@ -16,9 +16,15 @@ export default function Index() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      setProducts(data.products);
+      const response = await fetch('https://te-sate-api.vercel.app/api/menu');
+      const result = await response.json();
+      
+      if (result.success) {
+        // Gabungkan data makanan dan minuman sambil kasih tanda 'type'
+        const foods = result.data.foods.map((item: any) => ({ ...item, type: 'foods' }));
+        const beverages = result.data.beverages.map((item: any) => ({ ...item, type: 'beverages' }));
+        setProducts([...foods, ...beverages] as any);
+      }
     } catch (err: any) {
       setError("Gagal ambil data, cek koneksi lu!");
     } finally {
@@ -73,7 +79,7 @@ export default function Index() {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={products}
-        keyExtractor={(item: any) => item.id.toString()}
+        keyExtractor={(item: any) => `${item.type}-${item.id}`}
         ListHeaderComponent={renderHeader}
         numColumns={2}
         columnWrapperStyle={styles.columnWrapper}
@@ -82,11 +88,12 @@ export default function Index() {
         renderItem={({ item }: any) => (
           <CardName
             id={item.id} 
-            title={item.title}
+            title={item.name}
             description={item.description}
-            price={item.price * 15000}
-            image={item.thumbnail}
-            onPressCart={() => console.log('Tambah ke keranjang:', item.title)}
+            price={item.price}
+            image={item.image_resized}
+            type={item.type}
+            onPressCart={() => console.log('Tambah ke keranjang:', item.name)}
           />
         )}
       />

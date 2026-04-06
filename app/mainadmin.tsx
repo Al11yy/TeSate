@@ -17,15 +17,16 @@ export default function MainAdmin() {
   const fetchData = async () => {
     try {
       setLoading(true)
-      // Simulasi ambil data
-      const response = await fetch('https://dummyjson.com/products?limit=10')
-      const data = await response.json()
+      const response = await fetch('https://te-sate-api.vercel.app/api/menu')
+      const result = await response.json()
       
-      if (!data.products || data.products.length === 0) {
-        setError(true)
-      } else {
-        setProducts(data.products)
+      if (result.success) {
+        const foods = result.data.foods.map((item: any) => ({ ...item, type: 'foods' }));
+        const beverages = result.data.beverages.map((item: any) => ({ ...item, type: 'beverages' }));
+        setProducts([...foods, ...beverages] as any)
         setError(false)
+      } else {
+        setError(true)
       }
     } catch (err) {
       setError(true)
@@ -67,7 +68,7 @@ export default function MainAdmin() {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={error ? [] : products}
-        keyExtractor={(item: any) => item.id.toString()}
+        keyExtractor={(item: any) => `${item.type}-${item.id}`}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={renderEmptyState}
         numColumns={2}
@@ -76,10 +77,10 @@ export default function MainAdmin() {
         showsVerticalScrollIndicator={false}
         renderItem={({ item }: any) => (
           <CardAdmin
-            title={item.title}
+            title={item.name}
             description={item.description}
-            price={item.price * 15000}
-            image={item.thumbnail}
+            price={item.price}
+            image={item.image_resized}
             onEdit={() => console.log('Edit item:', item.id)}
             onDelete={() => console.log('Delete item:', item.id)}
           />

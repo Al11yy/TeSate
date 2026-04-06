@@ -1,0 +1,59 @@
+# Panduan Penggunaan Tesate API
+
+Berhasil mengganti API lama (DummyJSON) dengan Tesate API (Vercel). Berikut adalah detail cara penggunaan API baru ini di dalam project.
+
+## 🔗 Base URL
+> https://te-sate-api.vercel.app
+
+---
+
+## 🛠️ Endpoint yang Digunakan
+
+### 1. Mendapatkan Semua Menu
+Digunakan di halaman utama (`app/(tabs)/index.tsx`) dan halaman admin (`app/mainadmin.tsx`).
+- **URL**: `/api/menu`
+- **Method**: `GET`
+- **Struktur Response**:
+  ```json
+  {
+    "success": true,
+    "data": {
+      "foods": [...],
+      "beverages": [...]
+    }
+  }
+  ```
+- **Implementasi**: Kita menggabungkan `foods` dan `beverages` menjadi satu array untuk ditampilkan di list.
+
+### 2. Detail Produk
+Digunakan di halaman detail (`app/detailpro.tsx`).
+- **URL (Makanan)**: `/api/menu/foods/:id`
+- **URL (Minuman)**: `/api/menu/beverages/:id`
+- **Method**: `GET`
+- **Implementasi**: Kita mengirimkan param `type` (seperti 'foods' atau 'beverages') dari halaman sebelumnya agar tahu endpoint mana yang harus dipanggil.
+
+---
+
+## 🗂️ Perubahan Struktur Data (Mapping)
+
+Karena struktur data Tesate API berbeda dengan API sebelumnya, berikut adalah pemetaannya:
+
+| Field Lama (DummyJSON) | Field Baru (Tesate API) | Keterangan |
+|-------------------------|-------------------------|------------|
+| `title`                 | `name`                  | Nama produk |
+| `description`           | `description`           | Deskripsi produk |
+| `price` (* 15000)       | `price`                 | Harga sudah dalam Rupiah |
+| `thumbnail`             | `image_resized`         | Foto produk yang sudah di-optimize |
+| `id`                    | `id`                    | ID unik produk |
+
+---
+
+## 🚀 Perubahan Penting di Kode
+
+1. **Penghapusan Multiplier Harga**: Kita tidak lagi mengalikan harga dengan `15000` karena API baru sudah menyediakan harga dalam Rupiah (IDR).
+2. **Penambahan Tipe Produk**: Setiap item kini memiliki properti `type` ('foods' atau 'beverages') untuk mempermudah navigasi ke halaman detail yang tepat.
+3. **Optimasi Gambar**: Menggunakan `image_resized` untuk performa loading yang lebih cepat di aplikasi mobile.
+
+---
+
+Sekarang aplikasinya sudah terhubung sepenuhnya ke database menu Sate & Minuman tradisional! 🍢🥤

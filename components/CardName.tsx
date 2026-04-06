@@ -4,21 +4,22 @@ import { Ionicons } from '@expo/vector-icons'
 import { router } from 'expo-router' // Tambahkan import router
 
 interface CardProps {
-  id: number; // Tambahkan id supaya bisa navigasi spesifik
+  id: number; 
   title: string;
   description: string;
   price: number;
   image: string;
+  type: 'foods' | 'beverages';
   onPressCart?: () => void;
 }
 
-export default function CardName({ id, title, description, price, image, onPressCart }: CardProps) {
+export default function CardName({ id, title, description, price, image, type, onPressCart }: CardProps) {
   
   // Fungsi untuk handle klik pada kartu
   const handlePressDetail = () => {
     router.push({
       pathname: "/detailpro",
-      params: { id: id } // Lempar ID ke halaman detailpro
+      params: { id: id, type: type } // Lempar ID dan Type ke halaman detailpro
     });
   };
 
